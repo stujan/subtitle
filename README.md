@@ -1,0 +1,54 @@
+# subtitle-字幕解析器
+
+
+- 项目名称
+
+   srt字幕解释器。
+   
+
+- 字幕内容
+
+   见文件subtitle.srt。
+   
+
+- 字幕解释器功能与设计问题说明
+
+
+  - 分析字幕的单词和语法，分别写出词法和语法的文法。
+
+  - 在文法的基础上设计词法分析器和语法分析器。
+
+  - 建立内存数据结构，缓冲字幕
+
+  - 实现字幕平移（例如，将字幕整体推迟2秒）等功能，更新字幕文件。
+
+         Class time
+          {
+            int hour;
+            int minute;
+            int second;
+            int msecond;
+          }
+  
+  
+          Class subt
+          {
+            int sid;
+            time begin;
+            time end;
+            string content;
+          }
+      
+      
+  - 将字幕内容进行语义解释，存入一个subt类型的链表或数组中，例如
+
+          0
+          00:00:01,000 --> 00:00:25,000
+          English subtitle by : Eduun
+
+  - 假定对应的字幕节点名为sx，
+
+          则sx.sid=0, sx.begin.hour=0, sx.begin.minute=0,
+          sx.begin.second=1, sx.begin.msecond=0, sx.end.hour=0,
+          sx.end.minute=0, sx.end.second=25 , sx.end.msecond=0,
+          sx.content=”English subtitle by : Eduun”.
